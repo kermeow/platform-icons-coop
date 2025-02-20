@@ -1,5 +1,5 @@
 -- name: Platform Icons
--- description: \\#3399ff\\Platform Icons v1.0.0\n\n\\#dcdcdc\\Adds platform and device icons to the player list.\n\nMod by \\#646464\\kermeow\n\\#dcdcdc\\Player list by \\#008800\\Squishy6094
+-- description: \\#3399ff\\Platform Icons v1.0.0\n\n\\#dcdcdc\\Adds platform and device icons to the player list.\n\nMod by \\#646464\\kermeow\n\\#dcdcdc\\Playerlist recreation by \\#008800\\Squishy6094
 
 -- 0 = Mac
 -- 1 = Linux
