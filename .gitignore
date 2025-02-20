@@ -1,0 +1,13 @@
+# Kate
+*.kate-swp
+
+# Build output
+out/
+tmp/
+*.zip
+
+# Lua
+.luarc.json
+
+# For reference
+mod-storage-fs.sav
