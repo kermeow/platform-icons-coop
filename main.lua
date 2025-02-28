@@ -1,35 +1,35 @@
 -- name: Platform Icons
--- description: \\#3399ff\\Platform Icons v1.0.0\n\n\\#dcdcdc\\Adds platform and device icons to the player list.\n\nMod by \\#646464\\kermeow\n\\#dcdcdc\\Playerlist recreation by \\#008800\\Squishy6094
+-- description: \\#3399ff\\Platform Icons v1.1.0\n\n\\#dcdcdc\\Adds platform and device icons to the player list.\n\nMod by \\#646464\\kermeow\n\\#dcdcdc\\Icons by \\#dcdcdc\\x\\#00ff00\\Luigi\\#434343\\Gamer\\#dcdcdc\\x\n\\#dcdcdc\\Playerlist from \\#008800\\Squishy6094\\#dcdcdc\\'s Character Select
 
 -- 0 = Mac
 -- 1 = Linux
 -- 2 = Windows
 -- 3 = Android
 local os_platforms = {
-	["Mac OSX"] = 0,
+	["Unknown"] = 1,
+	["Windows"] = 0,
 	["Linux"] = 1,
 	["Unix"] = 1,
 	["FreeBSD"] = 1,
-	["Unknown"] = 1,
-	["Windows"] = 2,
+	["Mac OSX"] = 2,
 	["Android"] = 3
 }
 -- 0 = Android
 -- 1 = Desktop
 local os_devices = {
-	["Mac OSX"] = 1,
-	["Linux"] = 1,
-	["Unix"] = 1,
-	["FreeBSD"] = 1,
-	["Unknown"] = 1,
-	["Windows"] = 1,
-	["Android"] = 0
+	["Mac OSX"] = 0,
+	["Linux"] = 0,
+	["Unix"] = 0,
+	["FreeBSD"] = 0,
+	["Unknown"] = 0,
+	["Windows"] = 0,
+	["Android"] = 1
 }
 
 local platforms_texture = get_texture_info("platforms")
 local devices_texture = get_texture_info("devices")
 
-local render_platforms, render_devices = true, true
+local render_platforms, render_devices, icon_scale = true, true, 2
 if mod_storage_exists("render_platforms") then render_platforms = mod_storage_load_bool("render_platforms") end
 if mod_storage_exists("render_devices") then render_devices = mod_storage_load_bool("render_devices") end
 
@@ -250,18 +250,21 @@ local function render()
 
 		djui_hud_set_color(255, 255, 255, 255)
 
+		local iconXOffset = 8 * (icon_scale - 1)
+		local iconYOffset = 16 * (icon_scale - 1)
+
 		if os == "Unknown" then goto continue end
 		if render_devices then
 			device = os_devices[os]
 			djui_hud_render_texture_tile(devices_texture,
-				x, y, 1, 1, device * 32, 0, 32, 32)
-			x = x + 28
+				x - iconXOffset, y - iconYOffset, icon_scale, icon_scale, device * 32, 0, 32, 32)
+			x = x + 4 + 16 * icon_scale
 		end
 
 		if render_platforms then
 			platform = os_platforms[os]
 			djui_hud_render_texture_tile(platforms_texture,
-				x, y, 1, 1, (platform % 2) * 32, math.floor(platform / 2) * 32, 32, 32)
+				x - iconXOffset, y - iconYOffset, icon_scale, icon_scale, (platform % 2) * 32, math.floor(platform / 2) * 32, 32, 32)
 		end
 
 		::continue::
